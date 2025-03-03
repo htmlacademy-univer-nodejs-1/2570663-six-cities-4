@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов»
 
 * Студент: [Антон Габов](https://up.htmlacademy.ru/univer-nodejs-api/4/user/2570663).
-* Наставник: `Неизвестно`.
+* Наставник: [Олег Глущенко](https://htmlacademy.ru/profile/id305355).
 
 ---
 
