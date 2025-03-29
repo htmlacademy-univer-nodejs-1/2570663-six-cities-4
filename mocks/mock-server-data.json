@@ -1,0 +1,117 @@
+{
+  "api": {
+    "titles": [
+      "Stylish loft in the city center",
+      "Cozy apartment near the park",
+      "Luxury penthouse with panoramic views",
+      "Modern studio for digital nomads",
+      "Charming house in the historic district",
+      "Comfortable room in a shared apartment",
+      "Designer hotel room with spa access",
+      "Quiet countryside villa with pool"
+    ],
+    "descriptions": [
+      "This stylish accommodation is perfect for those who appreciate design and comfort. Located in the heart of the city with excellent transport links.",
+      "A cozy space with everything you need for a comfortable stay. Just a few minutes walk from the central park and main attractions.",
+      "Experience luxury living in this spacious penthouse offering breathtaking city views from every window.",
+      "A perfect workspace-friendly environment for remote workers with fast WiFi and ergonomic furniture.",
+      "A beautifully restored historic property combining old-world charm with modern conveniences.",
+      "An affordable option for solo travelers with access to shared kitchen and living areas.",
+      "Premium hotel accommodation with access to wellness facilities including sauna and massage services.",
+      "Escape the city noise in this peaceful countryside retreat with private garden and swimming pool."
+    ],
+    "cities": [
+      "Paris",
+      "Cologne",
+      "Brussels",
+      "Amsterdam",
+      "Hamburg",
+      "Dusseldorf"
+    ],
+    "images": [
+      "preview-01.jpg",
+      "preview-02.jpg",
+      "preview-03.jpg",
+      "preview-04.jpg",
+      "preview-05.jpg",
+      "preview-06.jpg",
+      "preview-07.jpg",
+      "preview-08.jpg",
+      "photo-01.jpg",
+      "photo-02.jpg",
+      "photo-03.jpg",
+      "photo-04.jpg",
+      "photo-05.jpg",
+      "photo-06.jpg",
+      "photo-07.jpg",
+      "photo-08.jpg",
+      "photo-09.jpg",
+      "photo-10.jpg"
+    ],
+    "types": [
+      "apartment",
+      "house",
+      "room",
+      "hotel"
+    ],
+    "amenities": [
+      "Breakfast",
+      "Air conditioning",
+      "Laptop friendly workspace",
+      "Baby seat",
+      "Washer",
+      "Towels",
+      "Fridge"
+    ],
+    "names": [
+      "Alex",
+      "Maria",
+      "John",
+      "Sophie",
+      "Michael",
+      "Emma",
+      "David",
+      "Olivia",
+      "Daniel",
+      "Sarah"
+    ],
+    "emails": [
+      "alex@example.com",
+      "maria@example.com",
+      "john@example.com",
+      "sophie@example.com",
+      "michael@example.com",
+      "emma@example.com",
+      "david@example.com",
+      "olivia@example.com",
+      "daniel@example.com",
+      "sarah@example.com"
+    ],
+    "avatarPaths": [
+      "avatar-01.jpg",
+      "avatar-02.jpg",
+      "avatar-03.jpg",
+      "avatar-04.jpg",
+      "avatar-05.jpg",
+      "avatar-06.jpg",
+      "avatar-07.jpg",
+      "avatar-08.jpg",
+      "avatar-09.jpg",
+      "avatar-10.jpg",
+      "avatar-11.jpg",
+      "avatar-12.jpg"
+    ],
+    "passwords": [
+      "SecurePass123!",
+      "MariaPassword456",
+      "Johnny789$",
+      "SophieSecure2023",
+      "MikeTheBest555",
+      "EmmaLovesCats22",
+      "DavidDev1984",
+      "OliviaTravel33#",
+      "DanielDesigner!1",
+      "SarahCoder42*"
+    ]
+  }
+}

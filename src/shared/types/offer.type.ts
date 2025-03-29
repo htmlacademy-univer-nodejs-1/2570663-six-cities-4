@@ -1,10 +1,14 @@
 import { User } from './user.type.js';
 
+export type CityName = 'Paris' | 'Cologne' | 'Brussels' | 'Amsterdam' | 'Hamburg' | 'Dusseldorf';
+
 export type City = {
-  name: 'Paris' | 'Cologne' | 'Brussels' | 'Amsterdam' | 'Hamburg' | 'Dusseldorf';
+  name: CityName;
   latitude: number;
   longitude: number;
 };
+
+export type PlaceType = 'apartment' | 'house' | 'room' | 'hotel';
 
 export type Amenity = 'Breakfast' | 'Air conditioning' | 'Laptop friendly workspace' | 'Baby seat' | 'Washer' | 'Towels' | 'Fridge';
 
@@ -22,8 +26,8 @@ export type Offer = {
   images: string[];
   isPremium: boolean;
   isFavorite: boolean;
+  type: PlaceType;
   rating: number;
-  type: 'apartment' | 'house' | 'room' | 'hotel';
   rooms: number;
   guests: number;
   price: number;
