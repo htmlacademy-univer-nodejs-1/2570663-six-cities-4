@@ -14,7 +14,8 @@ export class HelpCommand implements Command {
         Команды:
             --version:                   # выводит номер версии
             --help:                      # печатает этот текст
-            --import <path>:             # импортирует данные из TSV
+            --generate: <count> <path> <SERVER_API>             # генерирует count предложений
+            --import <path> <DB_USER> <DB_PASSWORD> <DB_HOST> <DB_NAME> <SALT>:             # импортирует данные из TSV
     `));
   }
 }
