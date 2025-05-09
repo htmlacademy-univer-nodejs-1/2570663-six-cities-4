@@ -1,6 +1,7 @@
 import { defaultClasses, getModelForClass, modelOptions, prop, Ref } from '@typegoose/typegoose';
 import { Amenity, City, CityName, Coordinates, PlaceType } from '../../types/index.js';
 import {UserEntity} from '../user/index.js';
+import {CommentEntity} from "../comment/index.js";
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-declaration-merging
 export interface OfferEntity extends defaultClasses.Base {}
@@ -158,6 +159,14 @@ export class OfferEntity extends defaultClasses.TimeStamps {
     }
   })
   public coordinates!: Coordinates;
+
+  @prop({
+    ref: 'CommentEntity',
+    foreignField: 'offerId',
+    localField: '_id',
+    justOne: false
+  })
+  public comments?: Ref<CommentEntity>[];
 }
 
 export const OfferModel = getModelForClass(OfferEntity);
