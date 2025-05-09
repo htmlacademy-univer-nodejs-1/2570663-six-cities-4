@@ -1,5 +1,5 @@
-import {Amenity, CityName, Coordinates, PlaceType} from "../../../types/index.js";
-import {UserDto} from "../../user/dto/user.dto.js";
+import {Amenity, CityName, Coordinates, PlaceType} from '../../../types/index.js';
+import {UserDto} from '../../user/dto/user.dto.js';
 
 export class OfferDto {
   public id!: string;

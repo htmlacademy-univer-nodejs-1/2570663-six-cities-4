@@ -1,4 +1,4 @@
-import {Amenity, CityName, Coordinates, PlaceType} from "../../../types/index.js";
+import {Amenity, CityName, Coordinates, PlaceType} from '../../../types/index.js';
 
 export class UpdateOfferDto {
   public title?: string;

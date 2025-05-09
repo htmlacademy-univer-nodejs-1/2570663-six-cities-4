@@ -6,8 +6,8 @@ import { Component } from '../../types/index.js';
 import { OfferService } from './offer-service.interface.js';
 import { OfferEntity } from './offer.entity.js';
 import { Types } from 'mongoose';
-import {CreateOfferDto} from "./dto/create-offer.dto.js";
-import {UpdateOfferDto} from "./dto/update-offer.dto.js";
+import {CreateOfferDto} from './dto/create-offer.dto.js';
+import {UpdateOfferDto} from './dto/update-offer.dto.js';
 
 @injectable()
 export class DefaultOfferService implements OfferService {

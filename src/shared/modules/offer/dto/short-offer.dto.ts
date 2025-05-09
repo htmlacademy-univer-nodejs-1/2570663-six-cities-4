@@ -1,4 +1,4 @@
-import {CityName, PlaceType} from "../../../types/index.js";
+import {CityName, PlaceType} from '../../../types/index.js';
 
 export class ShortOfferDto {
   public id!: string;
