@@ -1,6 +1,15 @@
 import { User } from './user.type.js';
 
-export type CityName = 'Paris' | 'Cologne' | 'Brussels' | 'Amsterdam' | 'Hamburg' | 'Dusseldorf';
+export enum CityNameEnum {
+  Paris = 'Paris',
+  Cologne = 'Cologne',
+  Brussels = 'Brussels',
+  Amsterdam = 'Amsterdam',
+  Hamburg = 'Hamburg',
+  Dusseldorf = 'Dusseldorf'
+}
+
+export type CityName = keyof typeof CityNameEnum;
 
 export type City = {
   name: CityName;
@@ -8,9 +17,26 @@ export type City = {
   longitude: number;
 };
 
-export type PlaceType = 'apartment' | 'house' | 'room' | 'hotel';
+export enum PlaceTypeEnum {
+  Apartment = 'apartment',
+  House = 'house',
+  Room = 'room',
+  Hotel = 'hotel'
+}
 
-export type Amenity = 'Breakfast' | 'Air conditioning' | 'Laptop friendly workspace' | 'Baby seat' | 'Washer' | 'Towels' | 'Fridge';
+export type PlaceType = keyof typeof PlaceTypeEnum;
+
+export enum AmenityEnum {
+  Breakfast = 'Breakfast',
+  AirConditioning = 'Air conditioning',
+  LaptopFriendlyWorkspace = 'Laptop friendly workspace',
+  BabySeat = 'Baby seat',
+  Washer = 'Washer',
+  Towels = 'Towels',
+  Fridge = 'Fridge'
+}
+
+export type Amenity = keyof typeof AmenityEnum;
 
 export type Coordinates = {
   latitude: number;
