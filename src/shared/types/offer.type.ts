@@ -9,7 +9,7 @@ export enum CityNameEnum {
   Dusseldorf = 'Dusseldorf'
 }
 
-export type CityName = keyof typeof CityNameEnum;
+export type CityName = `${CityNameEnum}`;
 
 export type City = {
   name: CityName;
@@ -24,7 +24,7 @@ export enum PlaceTypeEnum {
   Hotel = 'hotel'
 }
 
-export type PlaceType = keyof typeof PlaceTypeEnum;
+export type PlaceType = `${PlaceTypeEnum}`;
 
 export enum AmenityEnum {
   Breakfast = 'Breakfast',
@@ -36,7 +36,7 @@ export enum AmenityEnum {
   Fridge = 'Fridge'
 }
 
-export type Amenity = keyof typeof AmenityEnum;
+export type Amenity = `${AmenityEnum}`;
 
 export type Coordinates = {
   latitude: number;
