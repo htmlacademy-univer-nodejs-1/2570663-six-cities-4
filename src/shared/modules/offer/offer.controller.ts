@@ -29,6 +29,14 @@ export default class OfferController extends BaseController {
 
     this.logger.info('Register routes for OfferController');
     this.addRoute({
+      path: '/favorites',
+      method: HttpMethod.Get,
+      handler: this.getFavorites,
+      middlewares: [
+        new PrivateRouteMiddleware()
+      ]
+    });
+    this.addRoute({
       path: '/:offerId',
       method: HttpMethod.Get,
       handler: this.show,
@@ -82,6 +90,26 @@ export default class OfferController extends BaseController {
       method: HttpMethod.Get,
       handler: this.getPremiumByCity
     });
+    this.addRoute({
+      path: '/:offerId/favorite',
+      method: HttpMethod.Post,
+      handler: this.addToFavorites,
+      middlewares: [
+        new PrivateRouteMiddleware(),
+        new ValidateObjectIdMiddleware('offerId'),
+        new DocumentExistsMiddleware(this.offerService, 'Offer', 'offerId'),
+      ]
+    });
+    this.addRoute({
+      path: '/:offerId/favorite',
+      method: HttpMethod.Delete,
+      handler: this.removeFromFavorites,
+      middlewares: [
+        new PrivateRouteMiddleware(),
+        new ValidateObjectIdMiddleware('offerId'),
+        new DocumentExistsMiddleware(this.offerService, 'Offer', 'offerId'),
+      ]
+    });
   }
 
   public async show({params}: Request<ParamOfferId>, res: Response): Promise<void> {
@@ -102,18 +130,43 @@ export default class OfferController extends BaseController {
     this.created(res, fillDTO(OfferRdo, offer));
   }
 
-  public async delete({params}: Request<ParamOfferId>, res: Response): Promise<void> {
-    const {offerId} = params;
-    const offer = await this.offerService.deleteById(offerId);
+  public async delete({ params, tokenPayload }: Request<ParamOfferId>, res: Response): Promise<void> {
+    const { offerId } = params;
+    const existingOffer = await this.offerService.findById(offerId);
 
+    if (!existingOffer) {
+      this.notFound(res, 'Offer not found');
+      return;
+    }
+
+    if (existingOffer.authorId._id.toString() !== tokenPayload.id) {
+      this.forbidden(res, 'You are not allowed to delete this offer');
+      return;
+    }
+
+    await this.offerService.deleteById(offerId);
     await this.commentService.deleteByOfferId(offerId);
 
-    this.noContent(res, offer);
+    this.noContent(res, {});
   }
 
-  public async update({body, params}: Request<ParamOfferId, unknown, UpdateOfferDto>, res: Response): Promise<void> {
-    const updatedOffer = await this.offerService.updateById(params.offerId, body);
+  public async update(
+    { body, params, tokenPayload }: Request<ParamOfferId, unknown, UpdateOfferDto>,
+    res: Response
+  ): Promise<void> {
+    const existingOffer = await this.offerService.findById(params.offerId);
 
+    if (!existingOffer) {
+      this.notFound(res, 'Offer not found');
+      return;
+    }
+
+    if (existingOffer.authorId._id.toString() !== tokenPayload.id) {
+      this.forbidden(res, 'You are not allowed to update this offer');
+      return;
+    }
+
+    const updatedOffer = await this.offerService.updateById(params.offerId, body);
     this.ok(res, fillDTO(OfferRdo, updatedOffer));
   }
 
@@ -124,6 +177,21 @@ export default class OfferController extends BaseController {
 
   public async getPremiumByCity({params}: Request<ParamCity>, res: Response): Promise<void> {
     const offers = await this.offerService.findPremiumByCity(params.city);
+    this.ok(res, fillDTO(OfferRdo, offers));
+  }
+
+  public async addToFavorites({params}: Request<ParamOfferId>, res: Response): Promise<void> {
+    const updatedOffer = await this.offerService.addToFavorites(params.offerId);
+    this.ok(res, fillDTO(OfferRdo, updatedOffer));
+  }
+
+  public async removeFromFavorites({params}: Request<ParamOfferId>, res: Response): Promise<void> {
+    const updatedOffer = await this.offerService.removeFromFavorites(params.offerId);
+    this.ok(res, fillDTO(OfferRdo, updatedOffer));
+  }
+
+  public async getFavorites(_req: Request, res: Response): Promise<void> {
+    const offers = await this.offerService.findFavorites();
     this.ok(res, fillDTO(OfferRdo, offers));
   }
 }
