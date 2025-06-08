@@ -1,4 +1,5 @@
 import {
+  ArrayMaxSize, ArrayMinSize,
   IsArray,
   IsBoolean,
   IsEnum,
@@ -47,8 +48,8 @@ export class CreateOfferDto {
 
   @IsArray({ message: CreateOfferValidationMessage.images.invalidFormat })
   @IsUrl({}, { each: true, message: CreateOfferValidationMessage.images.invalidItems })
-  @MaxLength(6, { message: CreateOfferValidationMessage.images.maxSize })
-  @MinLength(6, { message: CreateOfferValidationMessage.images.minSize })
+  @ArrayMinSize(6, { message: CreateOfferValidationMessage.images.minSize })
+  @ArrayMaxSize(6, { message: CreateOfferValidationMessage.images.maxSize })
   public images!: string[];
 
   @IsBoolean({ message: CreateOfferValidationMessage.isPremium.invalidFormat })

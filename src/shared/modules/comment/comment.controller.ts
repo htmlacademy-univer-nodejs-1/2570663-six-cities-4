@@ -1,12 +1,12 @@
 import { inject, injectable } from 'inversify';
-import { Response } from 'express';
+import {Request, Response} from 'express';
 import { StatusCodes } from 'http-status-codes';
 import {
   BaseController,
   HttpError,
   HttpMethod,
   PrivateRouteMiddleware,
-  ValidateDtoMiddleware
+  ValidateDtoMiddleware,
 } from '../../libs/rest/index.js';
 import { Component } from '../../types/index.js';
 import { Logger } from '../../libs/logger/index.js';
@@ -16,6 +16,7 @@ import { fillDTO } from '../../helpers/index.js';
 import { CommentRdo } from './rdo/comment.rdo.js';
 import { CreateCommentRequest } from './types/create-comment-request.type.js';
 import {CreateCommentDto} from './dto/create-comment.dto.js';
+import {ParamOfferId} from '../offer/type/param-offerid.type.js';
 
 @injectable()
 export default class CommentController extends BaseController {
@@ -38,12 +39,19 @@ export default class CommentController extends BaseController {
     });
   }
 
+  public async index(req: Request<ParamOfferId>, res: Response): Promise<void> {
+    const { offerId } = req.params;
+    const comments = await this.commentService.findByOfferId(offerId);
+    this.ok(res, fillDTO(CommentRdo, comments));
+  }
+
+
   public async create(
     { body, tokenPayload }: CreateCommentRequest,
     res: Response
   ): Promise<void> {
 
-    if (! await this.offerService.exists(body.offerId)) {
+    if (!await this.offerService.exists(body.offerId)) {
       throw new HttpError(
         StatusCodes.NOT_FOUND,
         `Offer with id ${body.offerId} not found.`,
